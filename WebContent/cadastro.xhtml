@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>ToDo - Tarefas</title>
+	</head>
+	<h:body>
+		<div class="container">
+			<h:form>
+				Título:
+				<h:inputText value="#{cadastroBean.tarefa.titulo}"></h:inputText>
+				<br/>
+				
+				Descrição:
+				<h:inputTextarea value="#{cadastroBean.tarefa.descricao}"></h:inputTextarea>
+				<br/>
+				
+				Responsável:
+				<h:selectOneMenu value="#{cadastroBean.tarefa.responsavel}">
+					<f:selectItem itemValue="" itemLabel="- Select -"/>
+					<f:selectItem itemValue="Fulano de tal" itemLabel="Fulano de tal"/>
+					<f:selectItem itemValue="Fulaninho de cicrano" itemLabel="Fulaninho de cicrano"/>
+					<f:selectItem itemValue="Cicrano" itemLabel="Fulaninho de cicrano"/>
+					<f:selectItem itemValue="Cicrano de Fulano" itemLabel="Fulaninho de cicrano"/>
+				</h:selectOneMenu>
+				<br/>
+				
+				Prioridade:
+				<h:selectOneMenu value="#{cadastroBean.tarefa.prioridade}">
+					<f:selectItem itemValue="" itemLabel="- Select -"/>
+					<f:selectItem itemValue="Baixa" itemLabel="Baixa"/>
+					<f:selectItem itemValue="Média" itemLabel="Média"/>
+					<f:selectItem itemValue="Alta" itemLabel="Alta"/>
+				</h:selectOneMenu>
+				
+				
+				<br/>	
+				Deadline
+				<h:inputText value="#{cadastroBean.tarefa.deadline}">
+					<f:convertDateTime dateStyle="short" />
+				 </h:inputText>
+							 
+				<h:commandButton value="Cadastrar" action="listagem?faces-redirect=true"
+					actionListener="#{cadastroBean.incluir}"/>
+			</h:form>
+		</div>
+	</h:body>
+</html>
