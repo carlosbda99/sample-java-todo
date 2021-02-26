@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>ToDo - Listagem</title>
+		<link rel="stylesheet" href="resources/css/style.css"></link>
+	</h:head>
+	<h:body>
+		
+		<h:form>
+			Título/Descrição
+			<h:inputText value="#{cadastroBean.tituloDescrFiltro}"></h:inputText>
+			
+			Responsável
+			<h:selectOneMenu value="#{cadastroBean.responsavelFiltro}">
+				<f:selectItem itemValue="" itemLabel="Todos"/>
+				<f:selectItem itemValue="Não informado" itemLabel="Não informado"/>
+				<f:selectItem itemValue="Fulano de tal" itemLabel="Fulano de tal"/>
+				<f:selectItem itemValue="Fulaninho de cicrano" itemLabel="Fulaninho de cicrano"/>
+				<f:selectItem itemValue="Cicrano" itemLabel="Cicrano"/>
+				<f:selectItem itemValue="Cicrano de Fulano" itemLabel="Cicrano de Fulano"/>
+			</h:selectOneMenu>
+			
+			
+			Situação
+			<h:selectOneMenu value="#{cadastroBean.situacaoFiltro}">
+				<f:selectItem itemValue="" itemLabel="Todas"/>
+				<f:selectItem itemValue="Pendente" itemLabel="Pendente"/>
+				<f:selectItem itemValue="Concluída" itemLabel="Concluída"/>
+			</h:selectOneMenu>
+			<h:commandButton value="Pesquisar" action="#{cadastroBean.filtrar}"></h:commandButton>
+		</h:form>
+	
+		<h:form>
+			<table>
+			
+				<tr>
+					<td>Número</td>
+					<td>Título</td>
+					<td>Descrição</td>
+					<td>Responsável</td>
+					<td>Prioridade</td>
+					<td>Deadline</td>
+					<td>Situação</td>
+					<td>Ações</td>
+				</tr>
+				
+				<ui:repeat var="item" value="#{cadastroBean.tarefasFiltradas}">
+					<tr>
+						<td>#{cadastroBean.getIndex(item)}</td>
+						<td>#{item.titulo}</td>
+						<td>#{item.descricao}</td>
+						<td>#{item.responsavel}</td>
+						<td>#{item.prioridade}</td>
+						<td>#{item.deadline}</td>
+						<td>#{item.situacao}</td>
+						<td>
+							<h:commandButton rendered="#{item.situacao == 'Pendente'}" value="Concluir" action="#{cadastroBean.concluir}">
+								<f:setPropertyActionListener value="#{item}" target="#{cadastroBean.tarefaSelecionada}"/>
+							</h:commandButton>
+							
+							<h:commandButton value="Excluir" rendered="#{item.situacao != 'Excluída'}" action="#{cadastroBean.excluir}">
+								<f:setPropertyActionListener value="#{item}" target="#{cadastroBean.tarefaSelecionada}"/>
+							</h:commandButton>
+						</td>
+					</tr>
+				</ui:repeat>
+				
+			</table>
+		</h:form>
+	
+		<h:form>	
+			<h:commandButton value="Nova tarefa" action="cadastro?faces-redirect=true"></h:commandButton>
+		</h:form>
+		
+	</h:body>
+</html>
