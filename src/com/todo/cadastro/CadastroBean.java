@@ -108,7 +108,7 @@ public class CadastroBean implements Serializable{
 	}
 	
 	public void concluir() {
-		this.auxiliar = this.tarefasPendentes.indexOf(this.tarefaSelecionada);
+		this.auxiliar = this.tarefas.indexOf(this.tarefaSelecionada);
 		this.tarefaSelecionada.setSituacao("Concluída");
 		this.tarefas.set(this.auxiliar, this.tarefaSelecionada);
 		this.tarefasPendentes.remove(this.tarefaSelecionada);
