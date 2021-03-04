@@ -25,11 +25,9 @@
 					<f:selectItem itemValue="" itemLabel="Todos" />
 					<f:selectItem itemValue="Não informado" itemLabel="Não informado" />
 					<f:selectItem itemValue="Fulano de tal" itemLabel="Fulano de tal" />
-					<f:selectItem itemValue="Fulaninho de cicrano"
-						itemLabel="Fulaninho de cicrano" />
+					<f:selectItem itemValue="Fulaninho de cicrano" itemLabel="Fulaninho de cicrano" />
 					<f:selectItem itemValue="Cicrano" itemLabel="Cicrano" />
-					<f:selectItem itemValue="Cicrano de Fulano"
-						itemLabel="Cicrano de Fulano" />
+					<f:selectItem itemValue="Cicrano de Fulano" itemLabel="Cicrano de Fulano" />
 				</h:selectOneMenu>
 				<div class="f-row-2"/>
 
@@ -51,7 +49,7 @@
 		
 		<h:form>
 			<p:dataTable value="#{cadastroBean.tarefasFiltradas}" var="item"
-				rendered="#{cadastroBean.filtrado}" paginator="true" rows="5">
+				rendered="#{cadastroBean.filtrado}" paginator="true" reflow="true" rows="5">
 		
 				<p:column headerText="Número">
 					<h:outputText value="#{item.id}" />

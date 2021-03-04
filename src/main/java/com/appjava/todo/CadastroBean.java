@@ -21,7 +21,6 @@ public class CadastroBean implements Serializable {
 	private Tarefa tarefa;
 	private Integer auxiliar;
 	
-	private String numeroFiltro;
 	private String tituloDescrFiltro;
 	private String responsavelFiltro;
 	private String situacaoFiltro;
@@ -33,17 +32,16 @@ public class CadastroBean implements Serializable {
 		this.tarefasPendentes = new ArrayList<Tarefa>();
 		this.tarefasFiltradas = new ArrayList<Tarefa>();
 	}
+	
+	public void resetFiltro() {
+		this.tituloDescrFiltro = "";
+		this.responsavelFiltro = "";
+		this.situacaoFiltro ="";
+		this.filtrado = false;
+	}
 
 	public Boolean getFiltrado() {
 		return filtrado;
-	}
-
-	public String getNumeroFiltro() {
-		return numeroFiltro;
-	}
-
-	public void setNumeroFiltro(String numeroFiltro) {
-		this.numeroFiltro = numeroFiltro;
 	}
 
 	public String getSituacaoFiltro() {
@@ -115,7 +113,6 @@ public class CadastroBean implements Serializable {
 		this.tarefaSelecionada.setSituacao("Concluída");
 		this.tarefas.set(this.auxiliar, this.tarefaSelecionada);
 		this.tarefasPendentes.remove(this.tarefaSelecionada);
-//		this.tarefasFiltradas.remove(this.tarefaSelecionada);
 	}
 	
 	public void excluir() {
@@ -144,16 +141,17 @@ public class CadastroBean implements Serializable {
 		this.tarefas.add(this.tarefa);
 		this.tarefasPendentes.add(this.tarefa);
 		this.tarefa = new Tarefa();
-		this.tarefasFiltradas.clear();
-		this.numeroFiltro = "";
-		this.filtrado = false;
+		this.resetFiltro();
 	}
 	
 //	Implementar filtro de número
 	public void filtrar() {
 		this.tarefasFiltradas.clear();
+		this.filtrado = false;
+		System.out.println(this.responsavelFiltro);
+		System.out.println(this.situacaoFiltro);
 		for (Tarefa item: this.tarefas) {
-			if (( item.getTitulo().startsWith(tituloDescrFiltro) || item.getDescricao().startsWith(tituloDescrFiltro ))
+			if (( item.getTitulo().startsWith(tituloDescrFiltro) || item.getDescricao().startsWith(tituloDescrFiltro))
 					&& item.getResponsavel().startsWith(this.responsavelFiltro)
 					&& item.getSituacao().startsWith(this.situacaoFiltro))
 				{
@@ -163,12 +161,14 @@ public class CadastroBean implements Serializable {
 		}
 		if (tarefasFiltradas.size() > 0 ) {
 			this.filtrado = true;
+		} else {
+			this.filtrado = false;
 		}
 	}
 	
 	public void limpar() {
 		this.tarefasFiltradas.clear();
-		this.filtrado = false;
+		this.resetFiltro();
 	}
 	
 }

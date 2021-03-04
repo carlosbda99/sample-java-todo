@@ -17,19 +17,19 @@
 			<div class="f-row">
 				<span class="f-row-2">Título</span>
 				<h:inputText value="#{cadastroBean.tarefa.titulo}"
-					class="f-row-8"></h:inputText>
+					class="f-row-8 p-5"></h:inputText>
 			</div>
 
 			<div class="f-row">
 				<span class="f-row-2">Descrição</span>
 				<h:inputTextarea value="#{cadastroBean.tarefa.descricao}"
-					class="f-row-8"></h:inputTextarea>
+					class="f-row-8 p-5"></h:inputTextarea>
 			</div>
 
 			<div class="f-row">
 				<span class="f-row-2">Responsável</span>
 				<h:selectOneMenu value="#{cadastroBean.tarefa.responsavel}"
-					class="f-row-2">
+					class="f-row-2 p-5">
 					<f:selectItem itemValue="" itemLabel="- Select -" />
 					<f:selectItem itemValue="Fulano de tal" itemLabel="Fulano de tal" />
 					<f:selectItem itemValue="Fulaninho de cicrano"
@@ -41,7 +41,7 @@
 				<div class="f-row-2"></div>
 				<span class="f-row-2">Prioridade</span>
 				<h:selectOneMenu value="#{cadastroBean.tarefa.prioridade}"
-					class="f-row-2">
+					class="f-row-2 p-5">
 					<f:selectItem itemValue="" itemLabel="- Select -" />
 					<f:selectItem itemValue="Baixa" itemLabel="Baixa" />
 					<f:selectItem itemValue="Média" itemLabel="Média" />
@@ -51,17 +51,14 @@
 
 			<div class="f-row">
 				<span class="f-row-2">Deadline</span>
-				<div class="f-row-2">
-					<p:inputMask value="#{cadastroBean.tarefa.deadline}" mask="99/99/9999">
-						<f:convertDateTime dateStyle="short" placeholder="XX/XX/XXXX" />
-					</p:inputMask>
-				</div>
+				<p:datePicker value="#{cadastroBean.tarefa.deadline}">
+				</p:datePicker>
 			</div>
 
 			<h:commandButton value="Cadastrar"
 				action="listagem?faces-redirect=true"
 				actionListener="#{cadastroBean.incluir}"
-				class="f-row-3 btn"
+				class="f-row-3 btn p-5"
 				style="align-self: center"/>
 		</h:form>
 	</div>
