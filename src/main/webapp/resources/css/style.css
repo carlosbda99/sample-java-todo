@@ -69,3 +69,7 @@ form {
 	padding: 5px;
 }
 
+.centered {
+	align-self: center;
+}
+

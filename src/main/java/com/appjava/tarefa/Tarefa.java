@@ -3,15 +3,40 @@ package com.appjava.tarefa;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="tarefa")
 public class Tarefa implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column
 	private Integer id;
+	
+	@Column
 	private String titulo;
+	
+	@Column
 	private String descricao;
+	
+	@Column
 	private String responsavel;
+	
+	@Column
 	private String prioridade;
+	
+	@Column
 	private Date deadline;
+	
+	@Column
 	private String situacao;
 	
 	public Integer getId() {

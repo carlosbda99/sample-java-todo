@@ -14,7 +14,6 @@
 <h:body>
 	<div class="container">
 		<h:form>
-		
 			<div class="f-row">
 				<span class="f-row-2">Título/Descrição</span>
 				<h:inputText value="#{cadastroBean.tituloDescrFiltro}"
@@ -22,7 +21,6 @@
 			</div>
 
 			<div class="f-row">
-				
 				<span class="f-row-2">Responsável</span>
 				<h:selectOneMenu value="#{cadastroBean.responsavelFiltro}"
 					class="f-row-2 p-5">
@@ -35,7 +33,6 @@
 					<f:selectItem itemValue="Cicrano de Fulano"
 						itemLabel="Cicrano de Fulano" />
 				</h:selectOneMenu>
-				
 				<div class="f-row-2" />
 
 				<span class="f-row-2">Situação</span>
@@ -44,7 +41,6 @@
 					<f:selectItem itemValue="" itemLabel="Todas" />
 					<f:selectItem itemValue="Pendente" itemLabel="Pendente" />
 					<f:selectItem itemValue="Concluída" itemLabel="Concluída" />
-				
 				</h:selectOneMenu>
 			</div>
 
@@ -91,25 +87,25 @@
 
 				<p:column headerText="Ações">
 					<h:commandButton rendered="#{item.situacao == 'Pendente'}"
-						value="Concluir" action="#{cadastroBean.concluir}">
+						value="Concluir" action="#{cadastroBean.concluirBanco}">
 						<f:setPropertyActionListener value="#{item}"
 							target="#{cadastroBean.tarefaSelecionada}" />
 					</h:commandButton>
 					<h:commandButton value="Excluir"
 						rendered="#{item.situacao != 'Excluída'}"
-						action="#{cadastroBean.excluir}">
+						action="#{cadastroBean.excluirBanco}">
 						<f:setPropertyActionListener value="#{item}"
 							target="#{cadastroBean.tarefaSelecionada}" />
 					</h:commandButton>
 				</p:column>
 			</p:dataTable>
-			
 		</h:form>
 
 		<h:form>
 			<h:commandButton value="Nova tarefa"
-				action="index?faces-redirect=true" class="f-row-3 btn p-5"
-				style="align-self: center"></h:commandButton>
+				action="index?faces-redirect=true" class="f-row-3 btn p-5 centered"
+				actionListener="#{cadastroBean.limpar}">
+			</h:commandButton>
 		</h:form>
 	</div>
 

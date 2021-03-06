@@ -7,15 +7,15 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" href="resources/css/style.css"></link>
-<title>ToDo - Tarefas</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="resources/css/style.css"></link>
+	<title>ToDo - Tarefas</title>
 </h:head>
 <h:body>
 	<div class="container">
 		<h:form>
 			<div class="f-row">
-				<span class="f-row-2">Título</span>
+				<span class="f-row-2">Título *</span>
 				<h:inputText value="#{cadastroBean.tarefa.titulo}"
 					class="f-row-8 p-5"></h:inputText>
 			</div>
@@ -54,14 +54,23 @@
 				<p:datePicker value="#{cadastroBean.tarefa.deadline}">
 				</p:datePicker>
 			</div>
-			
+
 			<div class="f-row" style="justify-content: center">
-				<h:commandButton value="Cadastrar" action="#{cadastroBean.incluir}"
-					class="f-row-2 btn p-5"/>
-				<h:commandButton value="Listar tarefas" action="listagem?faces-redirect=true"
-					class="f-row-2 btn p-5"/>
-			</div>	
+				<h:commandButton value="Cadastrar"
+					action="#{cadastroBean.incluirBanco}" class="f-row-2 btn p-5" />
+			</div>
 		</h:form>
+
+
+		<h:form>
+			<h:outputLabel rendered="#{cadastroBean.validado == 'Vazio'}"
+				value="Campos obrigatórios pendentes" class="centered"></h:outputLabel>
+			<h:commandButton value="Listar tarefas"
+				action="listagem?faces-redirect=true" class="f-row-2 btn p-5"
+				actionListener="#{cadastroBean.limpar}"
+				style="align-self: flex-end" />
+		</h:form>
+		<h:outputLabel>* Campo obrigatório </h:outputLabel>
 	</div>
 </h:body>
 </html>
