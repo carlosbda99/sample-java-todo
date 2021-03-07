@@ -4,6 +4,7 @@
 
 <web-app>
 	<display-name>Sample Java ToDo with Hibernate</display-name>
+	<absolute-ordering />
 
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>

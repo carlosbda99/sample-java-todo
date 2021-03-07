@@ -1,2 +1,4 @@
-com/appjava/todo/CadastroBean.class
+com/appjava/util/HibernateUtil.class
 com/appjava/tarefa/Tarefa.class
+com/appjava/todo/Conexao.class
+com/appjava/todo/CadastroBean.class

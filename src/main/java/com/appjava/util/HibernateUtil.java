@@ -20,9 +20,9 @@ public class HibernateUtil {
 			
 			Properties settings = new Properties();
 			settings.put(Environment.DRIVER, "org.postgresql.Driver");
-			settings.put(Environment.URL, "jdbc:postgresql://localhost/<nome-do-banco>");
-			settings.put(Environment.USER, "<nome-do-usuario>");
-			settings.put(Environment.PASS, "<senha-do-usuario");
+			settings.put(Environment.URL, "jdbc:postgresql://<host>/<nome-do-banco>");
+			settings.put(Environment.USER, "<nome-de-usuario>");
+			settings.put(Environment.PASS, "<password-de-usuario>");
 			settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
 			settings.put(Environment.SHOW_SQL, "true");
 			settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");

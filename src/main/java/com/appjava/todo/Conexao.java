@@ -12,11 +12,8 @@ public class Conexao {
     public void saveTarefa(Tarefa tarefa) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // start a transaction
             transaction = session.beginTransaction();
-            // save the student object
             session.save(tarefa);
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -29,11 +26,8 @@ public class Conexao {
     public void updateTarefa(Tarefa tarefa) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // start a transaction
             transaction = session.beginTransaction();
-            // save the student object
-            session.update(tarefa);
-            // commit transaction
+            session.saveOrUpdate(tarefa);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -46,11 +40,8 @@ public class Conexao {
     public void deleteTarefa(Tarefa tarefa) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // start a transaction
             transaction = session.beginTransaction();
-            // save the student object
             session.delete(tarefa);
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

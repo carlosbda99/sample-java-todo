@@ -92,7 +92,6 @@
 							target="#{cadastroBean.tarefaSelecionada}" />
 					</h:commandButton>
 					<h:commandButton value="Excluir"
-						rendered="#{item.situacao != 'Excluída'}"
 						action="#{cadastroBean.excluirBanco}">
 						<f:setPropertyActionListener value="#{item}"
 							target="#{cadastroBean.tarefaSelecionada}" />
@@ -108,9 +107,6 @@
 			</h:commandButton>
 		</h:form>
 	</div>
-
-
-
 
 </h:body>
 </html>

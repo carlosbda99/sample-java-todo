@@ -1,2 +1,4 @@
-/home/henrique/eclipse-workspace/todo/src/main/java/com/appjava/tarefa/Tarefa.java
-/home/henrique/eclipse-workspace/todo/src/main/java/com/appjava/todo/CadastroBean.java
+/home/henrique/eclipse-workspace/java-todo/src/main/java/com/appjava/tarefa/Tarefa.java
+/home/henrique/eclipse-workspace/java-todo/src/main/java/com/appjava/todo/CadastroBean.java
+/home/henrique/eclipse-workspace/java-todo/src/main/java/com/appjava/util/HibernateUtil.java
+/home/henrique/eclipse-workspace/java-todo/src/main/java/com/appjava/todo/Conexao.java

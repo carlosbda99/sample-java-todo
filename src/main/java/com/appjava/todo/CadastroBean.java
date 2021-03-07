@@ -166,11 +166,11 @@ public class CadastroBean implements Serializable {
 
 	public void concluirBanco() {
 		this.tarefaSelecionada.setSituacao("Concluída");
+		System.out.println(this.tarefaSelecionada.getId());
 		this.conn.updateTarefa(this.tarefaSelecionada);
 	}
 
 	public void excluirBanco() {
-		this.tarefaSelecionada.setSituacao("Excluída");
 		this.conn.deleteTarefa(this.tarefaSelecionada);
 		this.tarefasFiltradas.remove(this.tarefaSelecionada);
 	}

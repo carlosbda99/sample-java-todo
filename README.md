@@ -6,6 +6,8 @@ Este app demonstra uma simples implementação de um gerenciador de tarefas util
 
 Com ele você conseguirá cadastrar suas tarefas e atribuí-las a responsáveis, consultá-las utilizando filtros de Título/Descrição, Responsável e Situação
 
+Também disponível no [Heroku](https://salty-savannah-75897.herokuapp.com/ "Sample-java-todo on Heroku")
+
 ### Packages utilizadas (Maven)
 Package | Versão
 :--------: | :--------:
