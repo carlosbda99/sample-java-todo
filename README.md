@@ -52,3 +52,11 @@ Faça o import na IDE como "Projeto Maven existente"
 Execute o projeto e acesse através do endereço:
 
 > http://localhost:<porta_do_server>/todo/
+
+### Tomcat / Wildfly / Glassfish
+
+Importe o arquivo "target/java-todo.war" como aplicação
+
+Execute o projeto e acesse através do endereço:
+
+> http://localhost:<porta_do_server>/todo/
