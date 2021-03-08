@@ -6,6 +6,8 @@ body {
 	align-items: center;
 	overflow: hidden;
 	height: 100vh;
+	top: 0px;
+	left: 0px;
 }
 
 table {
@@ -16,7 +18,7 @@ table {
 td, th {
 	border: 1px solid #dddddd;
 	text-align: left;
-	padding: 4px;
+	padding: 2px;
 }
 
 tr:nth-child(even) {
@@ -29,7 +31,7 @@ form {
 }
 
 .container {
-	width: 70%;
+	width: 80%;
 	border: 1px solid;
 	border-radius: 10px;
 	padding: 20px;
@@ -40,7 +42,6 @@ form {
 	align-content: end;
 	flex-direction: row;
 	padding: 5px;
-	margin: 5px
 }
 
 .f-row-2 {
@@ -62,7 +63,7 @@ form {
 }
 
 .btn {
-	margin: 10px
+	margin: 5px;
 }
 
 .p-5 {
@@ -73,3 +74,7 @@ form {
 	align-self: center;
 }
 
+.ui-icon {
+	width: 12px !important;
+  	font-size: 12px !important;
+}

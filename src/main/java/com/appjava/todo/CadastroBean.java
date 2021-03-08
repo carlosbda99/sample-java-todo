@@ -1,22 +1,21 @@
 package com.appjava.todo;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ApplicationScoped;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import org.primefaces.PrimeFaces;
 
 import com.appjava.tarefa.Tarefa;
 
 @ManagedBean
-@ApplicationScoped
+@SessionScoped
 public class CadastroBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -25,11 +24,11 @@ public class CadastroBean implements Serializable {
 	private Tarefa tarefaSelecionada;
 	private Tarefa tarefa;
 	private String validado;
-
 	private String tituloDescrFiltro;
 	private String responsavelFiltro;
 	private String situacaoFiltro;
 	private Boolean filtrado;
+	private Boolean novo;
 	private Conexao conn;
 
 	public CadastroBean() {
@@ -37,6 +36,7 @@ public class CadastroBean implements Serializable {
 		this.tarefas = new ArrayList<Tarefa>();
 		this.tarefasFiltradas = new ArrayList<Tarefa>();
 		this.conn = new Conexao();
+		this.novo = true;
 	}
 
 	public void resetFiltro() {
@@ -66,8 +66,8 @@ public class CadastroBean implements Serializable {
 		return tarefas;
 	}
 
-	public void setTarefas(List<Tarefa> tarefas) {
-		this.tarefas = tarefas;
+	public void setTarefa(Tarefa tarefa) {
+		this.tarefa = tarefa;
 	}
 
 	public Tarefa getTarefa() {
@@ -106,8 +106,12 @@ public class CadastroBean implements Serializable {
 		this.tituloDescrFiltro = tituloDescrFiltro;
 	}
 
-	public Integer getIndex(Tarefa item) {
-		return (this.tarefas.indexOf(item) + 1);
+	public Boolean getNovo() {
+		return novo;
+	}
+
+	public void setNovo(Boolean novo) {
+		this.novo = novo;
 	}
 
 	public void filtrar() {
@@ -141,7 +145,7 @@ public class CadastroBean implements Serializable {
 	public void incluirBanco() throws InterruptedException {
 		if ("".equals(this.tarefa.getTitulo())) {
 			this.validado = "Vazio";
-		} else {	
+		} else {
 			if ("".equals(this.tarefa.getResponsavel())) {
 				this.tarefa.setResponsavel("Não informado");
 			}
@@ -166,12 +170,44 @@ public class CadastroBean implements Serializable {
 
 	public void concluirBanco() {
 		this.tarefaSelecionada.setSituacao("Concluída");
-		System.out.println(this.tarefaSelecionada.getId());
 		this.conn.updateTarefa(this.tarefaSelecionada);
+		FacesMessage msg = new FacesMessage (FacesMessage.SEVERITY_INFO, "Alteração de tarefas", "Concluída com sucesso"); 
+		PrimeFaces.current().dialog().showMessageDynamic(msg);
+		this.filtrar();
 	}
 
 	public void excluirBanco() {
 		this.conn.deleteTarefa(this.tarefaSelecionada);
 		this.tarefasFiltradas.remove(this.tarefaSelecionada);
+	}
+	
+	public void editar() {
+		this.novo = false;
+		this.tarefa = this.tarefaSelecionada;
+	}
+	
+	public void updateBanco() {
+		if ("".equals(this.tarefa.getTitulo())) {
+			this.validado = "Vazio";
+		} else {
+			if ("".equals(this.tarefa.getResponsavel())) {
+				this.tarefa.setResponsavel("Não informado");
+			}
+			if ("".equals(this.tarefa.getDescricao())) {
+				this.tarefa.setDescricao("Não informado");
+			}
+			if ("".equals(this.tarefa.getPrioridade())) {
+				this.tarefa.setPrioridade("Alta");
+			}
+			if (null == this.tarefa.getDeadline()) {
+				Date now = new Date();
+				Date tomorrow = new Date(now.getTime() + (1000 * 60 * 60 * 48));
+				this.tarefa.setDeadline(tomorrow);
+			}
+			this.conn.updateTarefa(this.tarefa);
+			this.limpar();
+			FacesMessage msg = new FacesMessage (FacesMessage.SEVERITY_INFO, "Edição de tarefas", "Tarefa alterada com sucesso"); 
+			PrimeFaces.current().dialog().showMessageDynamic(msg);
+		}
 	}
 }
